@@ -1,11 +1,12 @@
 # Pypework
 
-## Pypework is a functional pipeline library for Python.
+Pypework is a functional pipeline library for Python.
 
 It allows you to rewrite messy function compositions such as this:
 
 ```python
-title_sanitized = replace(replace(replace(lowercase("Lorem Ipsum Dolor 2018/02/18"), " ", "_"), "/", "-"), "@", "at")
+title_sanitized =
+    replace(replace(replace(lowercase("Lorem Ipsum Dolor 2018/02/18"), " ", "_"), "/", "-"), "@", "at")
 ```
 
 In a far more readable format like this:
