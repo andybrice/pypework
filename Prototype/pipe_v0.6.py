@@ -1,9 +1,5 @@
 ## Pipeable Object Classes ##
 
-class InputPlaceholder: pass
-
-____ = InputPlaceholder()
-
 class AbstractPipeFunction:
     def __init__(self, function, *arguments, **keywords):
         self.function = function
@@ -42,6 +38,32 @@ class FunctionCatcher(AbstractIdentifierCatcher):
 class PartialFunctionCatcher(AbstractIdentifierCatcher):
     def __call__(self, *arguments, **keywords):
         return PartialPipeFunction(self.identifier_chain, *arguments, **keywords)
+
+## Placeholders ##
+
+class InputPlaceholder:
+    def __getattr__(self, name):
+        return PropertyPlaceholder([name])
+
+class PropertyPlaceholder:
+    def __init__(self, identifier_chain):
+        self.identifier_chain = identifier_chain
+
+    def __getattr__(self, name):
+        return PropertyPlaceholder([*self.identifier_chain, name])
+
+    def __call__(self, *arguments, **keywords):
+        return MethodPlaceholder(self.identifier_chain, *arguments, **keywords)
+
+class MethodPlaceholder:
+    def __init__(self, identifier_chain, *arguments, **keywords):
+        self.identifier_chain = identifier_chain
+        self.arguments = arguments
+        self.keywords = keywords
+
+____ = InputPlaceholder()
+
+____.lorem.ipsum.dolor(1,2,axis=3)
 
 ## Examples ##
 
