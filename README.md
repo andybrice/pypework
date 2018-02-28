@@ -13,11 +13,11 @@ In a far more readable format like this:
 
 ```python
 title_sanitized = (
-	"Lorem Ipsum Dolor 2018/02/18"
-	>> f.lowercase
-	>> f.replace("/", "-")
-	>> f.replace(" ", "_")
-	>> f.replace("@", "at")
+  "Lorem Ipsum Dolor 2018/02/18"
+    >> f.lowercase
+    >> f.replace("/", "-")
+    >> f.replace(" ", "_")
+    >> f.replace("@", "at")
 )
 
 title_sanitized # -> "lorem_ipsum_dolor_2018-02-18"
@@ -64,7 +64,7 @@ Or chain together multiple functions:
 You can also split a pipeline across multiple lines if you wrap it in parentheses:
 ```python
 ( "Lorem Ipsum"
-  >> f.lowercase
-  >> f.replace(" ", "_")
+    >> f.lowercase
+    >> f.replace(" ", "_")
 )
 ```
