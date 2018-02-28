@@ -22,22 +22,22 @@ class PartialPipeFunction(AbstractPipeFunction):
 ## Identifier Chain Processor Classes ##
 
 class AbstractIdentifierCatcher:
-    def __init__(self, identifier_chain):
-        self.identifier_chain = identifier_chain
+    def __init__(self, _identifier_chain=None, namespace=None):
+        self._identifier_chain = _identifier_chain or __import__(namespace)
 
     def __getattr__(self, name):
-        return self.__class__( getattr(self.identifier_chain, name) )
+        return self.__class__( getattr(self._identifier_chain, name) )
 
     def __rrshift__(self, other):
         return self()(other)
 
 class FunctionCatcher(AbstractIdentifierCatcher):
     def __call__(self, *arguments, **keywords):
-        return PipeFunction(self.identifier_chain, *arguments, **keywords)
+        return PipeFunction(self._identifier_chain, *arguments, **keywords)
 
-class PartialFunctionCatcher(AbstractIdentifierCatcher):
+class PartialCatcher(AbstractIdentifierCatcher):
     def __call__(self, *arguments, **keywords):
-        return PartialPipeFunction(self.identifier_chain, *arguments, **keywords)
+        return PartialPipeFunction(self._identifier_chain, *arguments, **keywords)
 
 ## Placeholders ##
 
