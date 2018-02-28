@@ -41,11 +41,10 @@ Import using:
 import pypework
 ```
 
-Initialize by instantiating a Function Catcher and telling it the top-level namespace:
+Initialize by instantiating a Function Catcher with the current module's namespace:
 
 ```python
-default_namespace = __import__(__name__)
-f = pypework.FunctionCatcher(default_namespace)
+f = pypework.FunctionCatcher(namespace = __name__)
 ```
 
 You can now make any function call pipeable by adding `f.` before it. For example `lowercase()` becomes `f.lowercase`.
