@@ -6,7 +6,7 @@ It allows you to rewrite messy function compositions such as this:
 
 ```python
 title_sanitized =
-    replace(replace(replace(lowercase("Lorem Ipsum Dolor 2018/02/18"), " ", "_"), "/", "-"), "@", "at")
+  replace(replace(replace(lowercase("Lorem Ipsum Dolor 2018/02/18"), " ", "_"), "/", "-"), "@", "at")
 ```
 
 In a far more readable format like this:
