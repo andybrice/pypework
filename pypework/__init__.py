@@ -21,9 +21,18 @@ class PartialPipeFunction(AbstractPipeFunction):
 
 ## Identifier Chain Processor Classes ##
 
+import inspect
+
 class AbstractIdentifierCatcher:
     def __init__(self, _identifier_chain=None, namespace=None):
-        self._identifier_chain = _identifier_chain or __import__(namespace)
+        if _identifier_chain:
+            self._identifier_chain = _identifier_chain
+        elif namespace:
+            self._identifier_chain = namespace
+        else:
+            caller_frame = inspect.currentframe().f_back
+            detected_module_name = caller_frame.f_globals.get("__name__", "<unknown module>")
+            self._identifier_chain = __import__(detected_module_name)
 
     def __getattr__(self, name):
         return self.__class__( getattr(self._identifier_chain, name) )
