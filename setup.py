@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pypework',
-      version='0.6',
+      version='0.6.1',
       description='Functional pipeline library for Python',
       url='http://github.com/andybrice/pypework',
       author='Andy Brice',
@@ -36,6 +36,6 @@ setup(name='pypework',
              >> f.replace("@", "at")
          )
 
-         title_sanitized # -> "lorem_ipsum_dolor_2018-02-18"         
+         title_sanitized # -> "lorem_ipsum_dolor_2018-02-18"
       """
       )

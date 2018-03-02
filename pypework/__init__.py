@@ -28,7 +28,7 @@ class AbstractIdentifierCatcher:
         if _identifier_chain:
             self._identifier_chain = _identifier_chain
         elif namespace:
-            self._identifier_chain = namespace
+            self._identifier_chain = __import__(namespace)
         else:
             caller_frame = inspect.currentframe().f_back
             detected_module_name = caller_frame.f_globals.get("__name__", "<unknown module>")
