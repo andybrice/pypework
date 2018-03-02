@@ -24,11 +24,23 @@ def test_function_catcher_with_automatic_scope():
     f = pypework.FunctionCatcher()
     assert f._identifier_chain == current_module
 
-# def increment(x): return x + 1
-# def add(a,b): return a + b
-#
-# f = pypework.FunctionCatcher( namespace = __name__ )
-#
-# def test_single_argument_with_parentheses():
-#     x = 5 >> f.increment()
-#     assert x == 6
+def increment(x): return x + 1
+def add(a,b): return a + b
+
+f = pypework.FunctionCatcher( namespace = __name__ )
+
+def test_catches_function_with_parentheses():
+    x = f.increment()
+    assert x.__class__ == pypework.PipeFunction
+
+def test_catches_function_without_parentheses():
+    x = f.increment
+    assert x.__class__ == pypework.FunctionCatcher
+
+def test_pipes_single_argument_with_parentheses():
+    x = 5 >> f.increment()
+    assert x == 6
+
+def test_pipes_single_argument_without_parentheses():
+    x = 5 >> f.increment
+    assert x == 6
