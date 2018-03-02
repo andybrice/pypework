@@ -1,0 +1,8 @@
+## Testing suite ##
+
+python -m pytest -v
+
+## Publishing ##
+
+python setup.py sdist
+python setup.py sdist upload
