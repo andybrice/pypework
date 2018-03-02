@@ -24,11 +24,11 @@ class PartialPipeFunction(AbstractPipeFunction):
 import inspect
 
 class AbstractIdentifierCatcher:
-    def __init__(self, _identifier_chain=None, namespace=None):
+    def __init__(self, _identifier_chain=None, scope=None):
         if _identifier_chain:
             self._identifier_chain = _identifier_chain
-        elif namespace:
-            self._identifier_chain = __import__(namespace)
+        elif scope:
+            self._identifier_chain = __import__(scope)
         else:
             caller_frame = inspect.currentframe().f_back
             detected_module_name = caller_frame.f_globals.get("__name__", "<unknown module>")
