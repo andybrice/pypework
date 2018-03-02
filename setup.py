@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pypework',
-      version='0.6.1',
+      version='0.7',
       description='Functional pipeline library for Python',
       url='http://github.com/andybrice/pypework',
       author='Andy Brice',
