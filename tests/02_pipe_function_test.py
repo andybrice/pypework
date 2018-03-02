@@ -3,11 +3,12 @@ from functions import *
 
 ### Pipe Function ###
 
-def test_pipe_function_exists():
+def test_exists():
     assert PipeFunction
 
 def test_instantiates_with_function_with_single_argument():
     f = PipeFunction(increment)
+    assert f
     assert f.function == increment
 
 def test_calls_function_with_single_argument():

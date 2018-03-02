@@ -3,23 +3,24 @@ from functions import *
 
 ## Unit Tests ##
 
-def test_function_catcher_exists():
-    assert PartialCatcher
+class TestPartialCatcher(object):
+    def test_exists(self):
+        assert PartialCatcher
 
-def test_function_catcher_instantiates_with_no_arguments():
-    f = PartialCatcher()
-    assert f.__class__ == PartialCatcher
+    def test_instantiates_with_no_arguments(self):
+        f = PartialCatcher()
+        assert f.__class__ == PartialCatcher
 
-def test_function_catcher_instantiates_with_named_scope():
-    f = PartialCatcher( scope = __name__ )
-    assert f.__class__ == PartialCatcher
+    def test_instantiates_with_named_scope(self):
+        f = PartialCatcher( scope = __name__ )
+        assert f.__class__ == PartialCatcher
 
-def test_function_catcher_scope_named():
-    current_module = __import__(__name__)
-    f = PartialCatcher( scope = __name__ )
-    assert f._identifier_chain == current_module
+    def test_scope_named(self):
+        current_module = __import__(__name__)
+        f = PartialCatcher( scope = __name__ )
+        assert f._identifier_chain == current_module
 
-def test_function_catcher_scope_automatic():
-    current_module = __import__(__name__)
-    f = PartialCatcher()
-    assert f._identifier_chain == current_module
+    def test_scope_automatic(self):
+        current_module = __import__(__name__)
+        f = PartialCatcher()
+        assert f._identifier_chain == current_module
