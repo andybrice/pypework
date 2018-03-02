@@ -13,8 +13,6 @@ setup(name='pypework',
       """
       A library to add a neat, readable, functional pipeline syntax to Python.
 
-      Rewrite messy nested function calls such as:
-
       It allows you to rewrite messy nested function calls such as this:
 
       .. code:: python
