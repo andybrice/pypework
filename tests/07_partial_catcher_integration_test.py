@@ -1,4 +1,4 @@
-from pypework import PartialCatcher, PartialPipeFunction
+from pypework import PartialCatcher, PartialPipeFunction, ____
 from functions import *
 import pytest
 
@@ -27,18 +27,18 @@ def test_catches_function_with_parentheses(p):
 
 ## Function Piping ##
 
-# def test_pipes_single_argument_with_parentheses(p):
-#     x = 5 >> p.increment()
-#     assert x == 6
-#
-# def test_pipes_single_argument_without_parentheses(f):
-#     x = 5 >> f.increment
-#     assert x == 6
-#
-# def test_pipes_multiple_arguments(f):
-#     x = 5 >> f.add(5)
-#     assert x == 10
-#
-# def test_inline_pipeline(f):
-#     x = 5 >> f.double >> f.increment >> f.add(4)
-#     assert x == 15
+def test_pipes_single_argument_with_parentheses(p):
+    x = 5 >> p.increment()
+    assert x == 6
+
+def test_pipes_single_argument_without_parentheses(p):
+    x = 5 >> p.increment
+    assert x == 6
+
+def test_pipes_multiple_arguments(p):
+    x = 5 >> p.add(5)
+    assert x == 10
+
+def test_inline_pipeline(p):
+    x = 5 >> p.double >> p.increment >> p.add(4)
+    assert x == 15
