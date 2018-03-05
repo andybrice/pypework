@@ -39,6 +39,6 @@ def test_pipes_multiple_arguments(f):
     x = 5 >> f.add(5)
     assert x == 10
 
-def test_inline_pipeline(f):
+def test_chains(f):
     x = 5 >> f.double >> f.increment >> f.add(4)
     assert x == 15

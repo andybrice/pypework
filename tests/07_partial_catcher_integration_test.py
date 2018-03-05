@@ -39,6 +39,28 @@ def test_pipes_multiple_arguments(p):
     x = 5 >> p.add(5)
     assert x == 10
 
-def test_inline_pipeline(p):
+def test_chains(p):
     x = 5 >> p.double >> p.increment >> p.add(4)
     assert x == 15
+
+## Placeholder Piping ##
+
+def test_pipes_placeholder_in_first_argument(p):
+    x = 10 >> p.subtract(____, 5)
+    assert x == 5
+
+def test_pipes_placeholder_in_subsequent_argument(p):
+    x = 5 >> p.subtract(10, ____)
+    assert x == 5
+
+def test_pipes_placeholder_in_multiple_arguments(p):
+    x = 5 >> p.add(____, ____)
+    assert x == 10   
+
+def test_pipes_placeholder_in_multiple_arguments(p):
+    x = 5 >> p.add(____, ____)
+    assert x == 10   
+
+def test_pipes_placeholder_in_keywords(p):
+    x = 2 >> p.distance(7, 10, multiplier=____)
+    assert x == 6
