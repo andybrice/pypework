@@ -14,9 +14,17 @@ class PipeFunction(AbstractPipeFunction):
         return self.function(operand, *self.arguments, **self.keywords)
 
 class PartialPipeFunction(AbstractPipeFunction):
-    def __call__(self, operand):
-        arguments = [operand if a==____ else a for a in self.arguments]
-        keywords  = { k:operand if v==____ else v for (k,v) in self.keywords.items() }
+    def __call__(self, operand):  
+        placeholder_in_arguments = ____ in self.arguments
+        placeholder_in_keywords  = ____ in self.keywords
+
+        if placeholder_in_arguments or placeholder_in_arguments:
+            arguments = [operand if a==____ else a for a in self.arguments]
+            keywords  = { k:operand if v==____ else v for (k,v) in self.keywords.items() }
+        else:
+            arguments = (operand, *self.arguments)
+            keywords  = self.keywords
+
         return self.function(*arguments, **keywords)
 
 ## Identifier Chain Processor Classes ##
