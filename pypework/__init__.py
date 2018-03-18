@@ -73,3 +73,26 @@ class InputPlaceholder: pass
 ## Interface ##
 
 ____ = InputPlaceholder()
+
+class MethodCatcher:
+    def __init__(self, scope=[]):
+        self._scope = scope
+
+    def __getattr__(self, name):
+        new_scope = [*self._scope, name]
+        return MethodCatcher(scope=new_scope)
+
+    def invoke_on(self, other):
+        def resolve_identifier_chain(root_object, chain):
+                if len(chain) == 1:
+                    return getattr(root_object, chain[0])
+                else:
+                    # root_object = bob
+                    # chain = ['date_of_birth', 'day']
+                    head = chain[0]
+                    tail = chain[1:]
+                    sub_object = getattr(root_object, head)
+                    return resolve_identifier_chain(sub_object, tail)
+
+        return resolve_identifier_chain(other, self._scope)
+
